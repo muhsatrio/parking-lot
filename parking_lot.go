@@ -9,7 +9,7 @@ import (
 )
 
 type parking struct {
-	registId string
+	registID string
 	color    string
 }
 
@@ -26,7 +26,7 @@ func main() {
 			parkLength, _ := strconv.Atoi(input[firstSpace+1 : length])
 			parkMax = parkLength
 			for i := 1; i <= parkMax; i++ {
-				parkingData[i].registId = "-1"
+				parkingData[i].registID = "-1"
 				parkingData[i].color = "-1"
 			}
 			fmt.Printf("Created a parking lot with %d slots\n", parkMax)
@@ -35,26 +35,26 @@ func main() {
 			registrationNumber := input[firstSpace+1 : lastSpace]
 			color := input[lastSpace+1 : length]
 			i := 1
-			for parkingData[i].color != "-1" && parkingData[i].registId != "-1" && i <= parkMax {
+			for parkingData[i].color != "-1" && parkingData[i].registID != "-1" && i <= parkMax {
 				i++
 			}
 			if i > parkMax {
 				fmt.Println("Sorry, parking lot is full")
 			} else {
 				parkingData[i].color = color
-				parkingData[i].registId = registrationNumber
+				parkingData[i].registID = registrationNumber
 				fmt.Printf("Allocated slot number: %d\n", i)
 			}
 		} else if strings.Index(input, "leave") == 0 {
 			indexDelete, _ := strconv.Atoi(input[firstSpace+1 : length])
 			parkingData[indexDelete].color = "-1"
-			parkingData[indexDelete].registId = "-1"
+			parkingData[indexDelete].registID = "-1"
 			fmt.Printf("Slot number %d is free\n", indexDelete)
 		} else if strings.Index(input, "status") == 0 {
 			fmt.Println("Slot No. Registration No. Colour")
 			for i := 1; i <= parkMax; i++ {
-				if parkingData[i].color != "-1" && parkingData[i].registId != "-1" {
-					fmt.Printf("%d %s %s\n", i, parkingData[i].registId, parkingData[i].color)
+				if parkingData[i].color != "-1" && parkingData[i].registID != "-1" {
+					fmt.Printf("%d %s %s\n", i, parkingData[i].registID, parkingData[i].color)
 				}
 			}
 		} else if strings.Index(input, "registration_numbers_for_cars_with_colour") == 0 {
@@ -63,10 +63,10 @@ func main() {
 			for i := 1; i <= parkMax; i++ {
 				if parkingData[i].color == colorFind {
 					if firstPrinted == false {
-						fmt.Print(parkingData[i].registId)
+						fmt.Print(parkingData[i].registID)
 						firstPrinted = true
 					} else {
-						fmt.Printf(", %s", parkingData[i].registId)
+						fmt.Printf(", %s", parkingData[i].registID)
 					}
 				}
 			}
@@ -88,7 +88,7 @@ func main() {
 		} else if strings.Index(input, "slot_number_for_registration_number") == 0 {
 			registerIDFind := input[firstSpace+1 : length]
 			i := 1
-			for i <= parkMax && parkingData[i].registId != registerIDFind {
+			for i <= parkMax && parkingData[i].registID != registerIDFind {
 				i++
 			}
 			if i > parkMax {
